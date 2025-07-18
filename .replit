@@ -3,7 +3,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["glibcLocales", "libxcrypt", "streamlit"]
+packages = ["glibcLocales", "libxcrypt", "streamlit", "openssh"]
 
 [unitTest]
 language = "python3"
