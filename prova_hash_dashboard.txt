@@ -1,0 +1,5 @@
+SHA-256 do arquivo dashboard.py  
+Hash: 34aa962fedcf41209922441d6860aec6991debda5a9a9d4627baa8222aefc7dd 
+Data: 2025-07-18  
+Autor: Felipe FERREIRA CABRAL, Campo Grande-MS  
+Projeto: Aurora Ratio  
