@@ -44,3 +44,12 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "streamlit run dashboard.py --server.port=8501 --server.address=0.0.0.0"
+
+[[workflows.workflow]]
+name = "Run Custom Streamlit"
+author = 44777366
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "streamlit run layout_aurora_ratio.py --server.address=0.0.0.0 --server.port=8501"
