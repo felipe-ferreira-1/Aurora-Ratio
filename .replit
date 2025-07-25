@@ -53,3 +53,7 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "streamlit run layout_aurora_ratio.py --server.address=0.0.0.0 --server.port=8501"
+
+[[ports]]
+localPort = 8501
+externalPort = 80
