@@ -29,3 +29,6 @@ shap
 scikit-learn
 datasets
 supabase
+streamlit
+streamlit-card
+requests
