@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv
-from fastapi import Header, HTTPException
-from supabase import create_client
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
+from fastapi import Header, HTTPException # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
 
 # 🔐 Carrega variáveis do .env
 load_dotenv()

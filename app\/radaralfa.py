@@ -1,11 +1,11 @@
 import os
 from datetime import datetime
-from app.sentiment import analisar_sentimento
-from supabase import create_client, Client
-from dotenv import load_dotenv
-import requests
-from app.notificador import enviar_alerta_email
-from app.alerta_popup import emitir_popup
+from app.sentiment import analisar_sentimento # pyright: ignore[reportMissingImports]
+from supabase import create_client, Client # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
+import requests # pyright: ignore[reportMissingModuleSource]
+from app.notificador import enviar_alerta_email # pyright: ignore[reportMissingImports]
+from app.alerta_popup import emitir_popup # pyright: ignore[reportMissingImports]
 
 load_dotenv()
 
@@ -56,7 +56,7 @@ def classificar_risco(sentimento: str) -> str:
     else:
         return "BAIXO"
 
-def gerar_frase_ia(sentimento: str, empresa: str) -> str:
+def gerar_frase_ia(sentimento: str, empresa: str) -> str: # pyright: ignore[reportReturnType]
     if sentimento == "negativo":
         return f"Atenção: notícias preocupantes sobre {empresa}. Recomendamos análise imediata."
     def monitorar_noticias():

@@ -1,6 +1,6 @@
 # login.py
 
-import streamlit as st
+import streamlit as st # pyright: ignore[reportMissingImports]
 
 def autenticar_usuario():
     st.sidebar.title("🔐 Login Aurora Ratio")

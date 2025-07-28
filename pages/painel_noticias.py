@@ -1,11 +1,11 @@
 # painel_noticias.py
 
-import streamlit as st
-import pandas as pd
-from monitoramento_aurora import monitorar_noticias, carregar_empresas_monitoradas
-from supabase import create_client
+import streamlit as st # pyright: ignore[reportMissingImports]
+import pandas as pd # pyright: ignore[reportMissingModuleSource]
+from monitoramento_aurora import monitorar_noticias, carregar_empresas_monitoradas # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 
 # Configuração
 st.set_page_config(page_title="📡 Aurora Ratio — Central de Notícias", layout="wide")
@@ -34,7 +34,7 @@ df_alertas = df_alertas[df_alertas["sentimento"].isin(sentimento_filtrado)]
 
 # Conversão de timestamp
 df_alertas["timestamp"] = pd.to_datetime(df_alertas["timestamp"])
-df_alertas = df_alertas.sort_values(by="timestamp", ascending=False)
+df_alertas = df_alertas.sort_values(by="timestamp", ascending=False) # pyright: ignore[reportCallIssue]
 # 🔎 Detalhes por alerta
 st.subheader("🗂️ Últimos alertas detectados")
 if not df_alertas.empty:

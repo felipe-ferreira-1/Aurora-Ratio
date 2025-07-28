@@ -1,4 +1,4 @@
-import requests
+import requests # pyright: ignore[reportMissingModuleSource]
 
 # 🔗 Supabase URL e chave pública
 url = "https://wegwcsfapippzwiltmtg.supabase.co"  # substitua pela sua URL real

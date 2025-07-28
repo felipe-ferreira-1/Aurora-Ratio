@@ -1,56 +1,43 @@
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-from supabase import create_client
+import streamlit as st # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 import os
-from dotenv import load_dotenv
+from uuid import uuid4
 
 load_dotenv()
-router = APIRouter()
+
 supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
 
-class NovoUsuario(BaseModel):
-    email: str
-    plano: str  # mensal ou anual
-    pais: str
-    moeda_preferida: str
-    lang: str
+st.title("Cadastro no Império Aurora Ratio 👑")
 
-@router.post("/cadastro")
-def cadastrar(usuario: NovoUsuario):
-    try:
-        # 🔐 Geração de token simples (futuramente JWT ou com expiração)
-        from uuid import uuid4
-        token = str(uuid4())
+nome = st.text_input("Nome")
+email = st.text_input("E-mail")
+plano = st.selectbox("Plano", ["mensal", "anual"])
+pais = st.text_input("País")
+moeda = st.text_input("Moeda preferida")
+lang = st.selectbox("Idioma", ["pt", "en", "es"])
 
-        # 📦 Inserir novo usuário
-        supabase.table("usuarios").insert({
-            "email": usuario.email,
-            "plano": usuario.plano,
-            "pais": usuario.pais,
-            "moeda_preferida": usuario.moeda_preferida,
-            "lang": usuario.lang,
-            "token": token,
-            "cargo": "usuario"
-🧠👑 Bem-vindo ao Império Aurora Ratio!
+if st.button("Cadastrar"):
+    token = str(uuid4())
 
-Olá [NOME_DO_USUÁRIO],
+    resposta = supabase.table("usuarios").insert({
+        "nome": nome,
+        "email": email,
+        "plano": plano,
+        "pais": pais,
+        "moeda_preferida": moeda,
+        "lang": lang,
+        "token": token,
+        "cargo": "usuario"
+    }).execute()
 
-É uma honra tê-lo entre os estrategistas do Aurora Ratio — a plataforma que une inteligência de mercado, visão preditiva e colaboração estratégica.
+    if resposta.get("status_code") == 201:
+        st.success(f"""
+🧠 Bem-vindo ao Aurora Ratio, {nome}!
 
-Seu acesso foi ativado com sucesso.  
-🔐 Token de entrada: [SEU_TOKEN]  
-🌐 Idioma preferido: [LANG]  
-🪙 Moeda de referência: [MOEDA]
-
-Recomendamos iniciar explorando:
-- Seus alertas personalizados
-- A área de comentários VIP (se aplicável)
-- As análises da IA preditiva de mercado
-
-Se precisar de suporte, nossa IA está sempre ao seu lado.
-
-O futuro já começou.  
-Bem-vindo à muralha da inteligência.
-
-Atenciosamente,  
-Equipe Aurora Ratio
+🔐 Token: {token}  
+🌐 Idioma: {lang}  
+🪙 Moeda: {moeda}
+        """)
+    else:
+        st.error("Não foi possível cadastrar o usuário.")

@@ -1,10 +1,10 @@
-import streamlit as st
-import pandas as pd
+import streamlit as st # pyright: ignore[reportMissingImports]
+import pandas as pd # pyright: ignore[reportMissingModuleSource]
 import os
-from dotenv import load_dotenv
-from supabase import create_client
-from utils.fiscal import gerar_nota_fiscal, exportar_para_contador, calcular_imposto
-from utils.temporal_gate import gerar_portao_temporal
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
+from utils.fiscal import gerar_nota_fiscal, exportar_para_contador, calcular_imposto # pyright: ignore[reportMissingImports]
+from utils.temporal_gate import gerar_portao_temporal # pyright: ignore[reportMissingImports]
 
 load_dotenv()
 SUPABASE_URL = os.getenv("https://wegwcsfapippzwiltmtg.supabase.co")

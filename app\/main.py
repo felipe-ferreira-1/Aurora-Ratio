@@ -1,14 +1,14 @@
 # main.py
-import streamlit as st
+import streamlit as st # pyright: ignore[reportMissingImports]
 import os
-from dotenv import load_dotenv
-from supabase import create_client
+from dotenv import load_dotenv # type: ignore
+from supabase import create_client # pyright: ignore[reportMissingImports]
 import importlib
 from planos import mostrar_planos
-from checkout_intervalos import checkout
-from aurora_connect import show_connect_page
-from utils.logger import registrar_acao
-from utils.fluxo_caixa import mostrar_fluxo
+from checkout_intervalos import checkout # pyright: ignore[reportMissingImports]
+from aurora_connect import show_connect_page # pyright: ignore[reportMissingImports]
+from utils.logger import registrar_acao # pyright: ignore[reportMissingImports]
+from utils.fluxo_caixa import mostrar_fluxo # pyright: ignore[reportMissingImports]
 
 # Configuração visual e Supabase
 st.set_page_config(page_title="Aurora Ratio", layout="wide")

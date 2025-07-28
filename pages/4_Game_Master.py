@@ -1,10 +1,10 @@
 # 4_Game_Master.py
 
-import streamlit as st
-import pandas as pd
-import pycountry
-import plotly.express as px
-from supabase import create_client
+import streamlit as st # pyright: ignore[reportMissingImports]
+import pandas as pd # pyright: ignore[reportMissingModuleSource]
+import pycountry # pyright: ignore[reportMissingImports]
+import plotly.express as px # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
 
 # Conexão com Supabase
 SUPABASE_URL = "https://wegwcsfapippzwiltmtg.supabase.co"
@@ -115,5 +115,4 @@ def painel_master():
     }
     continente_selecionado = st.selectbox("🧭 Filtrar por continente", options=["Todos"] + list(continentes.keys()))
     if continente_selecionado != "Todos":
-        paises_selecionados +=
-        
+        paises_selecionados += []

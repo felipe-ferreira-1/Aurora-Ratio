@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, Request
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, Request # pyright: ignore[reportMissingImports]
+from pydantic import BaseModel # pyright: ignore[reportMissingImports]
 from datetime import datetime
-from supabase import create_client
-from dotenv import load_dotenv
+from supabase import create_client # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 import os
 
 load_dotenv()

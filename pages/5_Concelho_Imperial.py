@@ -1,8 +1,8 @@
-import streamlit as st
-import pandas as pd
+import streamlit as st # pyright: ignore[reportMissingImports]
+import pandas as pd # pyright: ignore[reportMissingModuleSource]
 import os
-from dotenv import load_dotenv
-from supabase import create_client
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
 
 load_dotenv()
 SUPABASE_URL = os.getenv("https://wegwcsfapippzwiltmtg.supabase.co")

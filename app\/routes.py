@@ -1,9 +1,9 @@
-from fastapi import APIRouter, HTTPException, Depends, Header
-from app.sentiment import analisar_sentimento
-from app.auth import validar_token, usuario_por_token, verificar_cargo
-from supabase import create_client
+from fastapi import APIRouter, HTTPException, Depends, Header # pyright: ignore[reportMissingImports]
+from app.sentiment import analisar_sentimento # pyright: ignore[reportMissingImports]
+from app.auth import validar_token, usuario_por_token, verificar_cargo # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 
 load_dotenv()
 router = APIRouter()
@@ -27,6 +27,6 @@ def analisar_noticia(noticia: str, x_token: str = Depends(validar_token)):
     if not noticia or len(noticia.strip()) < 5:
         raise HTTPException(status_code=400, detail="Notícia inválida")
     resultado = analisar_sentimento(noticia)
-    return {"noticia": noticia, "sentimento": resultado
+    return {"noticia": noticia, "sentimento": resultado}
     from app.auth_senha import router as auth_router
     app.include_router(auth_router)

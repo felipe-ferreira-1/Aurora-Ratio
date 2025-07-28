@@ -1,7 +1,7 @@
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-from supabase import create_client
-from dotenv import load_dotenv
+from fastapi import APIRouter, HTTPException # pyright: ignore[reportMissingImports]
+from pydantic import BaseModel # pyright: ignore[reportMissingImports]
+from supabase import create_client # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 import os
 
 load_dotenv()
@@ -15,7 +15,7 @@ class Comentario(BaseModel):
     alerta_id: str
     autor_email: str
     mensagem: str
-    resposta_a: str | None = None
+    resposta_a: str | None = None # pyright: ignore[reportGeneralTypeIssues]
 
 @router.post("/comentario")
 def comentar(dados: Comentario):

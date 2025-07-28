@@ -1,4 +1,4 @@
-from plyer import notification
+from plyer import notification # pyright: ignore[reportMissingImports]
 
 def emitir_popup(empresa, noticia, sentimento):
     titulo = f"{empresa} → {sentimento}"

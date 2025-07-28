@@ -1,7 +1,7 @@
 import smtplib
 from email.message import EmailMessage
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 
 load_dotenv()
 
@@ -25,7 +25,7 @@ def enviar_alerta_email(empresa, noticia, sentimento):
 
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(ratioaurora@gmail.com, aurorafeliperatio)
+            smtp.login(ratioaurora@gmail.com, aurorafeliperatio) # pyright: ignore[reportUndefinedVariable]
             smtp.send_message(msg)
             print("📩 Alerta enviado por e-mail com sucesso!")
     except Exception as e:

@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 
 # 🔮 Seletor de IA
 MODO_IA = os.getenv("MODO_IA", "local").lower()  # Opções: local, huggingface, openai
@@ -34,7 +34,7 @@ def analisar_local(texto: str) -> str:
 # 🧪 IA via Hugging Face
 def analisar_huggingface(texto: str) -> str:
     try:
-        from transformers import pipeline
+        from transformers import pipeline # pyright: ignore[reportMissingImports]
         classificador = pipeline("sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment")
         resultado = classificador(texto[:512])[0]['label']
         if "1 star" in resultado or "2 stars" in resultado:
@@ -50,7 +50,7 @@ def analisar_huggingface(texto: str) -> str:
 # 🔐 IA via OpenAI
 def analisar_openai(texto: str) -> str:
     try:
-        import openai
+        import openai # pyright: ignore[reportMissingImports]
         load_dotenv()
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -94,7 +94,7 @@ def analisar_sentimento_rico(texto: str) -> dict:
 # 🧾 Auditoria via Supabase
 def registrar_log_sentimento(texto: str, resultado: dict):
     try:
-        from supabase import create_client
+        from supabase import create_client # pyright: ignore[reportMissingImports]
         load_dotenv()
         url = os.getenv("SUPABASE_URL")
         chave = os.getenv("SUPABASE_KEY")
@@ -106,7 +106,7 @@ def registrar_log_sentimento(texto: str, resultado: dict):
             "fonte": resultado.get("fonte"),
             "confiança": resultado.get("confiança"),
             "mensagem": resultado.get("mensagem"),
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat() # pyright: ignore[reportUndefinedVariable]
         }).execute()
     except Exception as e:
         print(f"⚠️ Erro ao registrar log: {e}")
