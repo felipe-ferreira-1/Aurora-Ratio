@@ -1,13 +1,21 @@
-import streamlit as st # pyright: ignore[reportMissingImports]
-import pandas as pd # pyright: ignore[reportMissingModuleSource]
+import streamlit as st
+import pandas as pd
 import os
-from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
-from supabase import create_client # pyright: ignore[reportMissingImports]
-from utils.mentoria import recomendar_mentor # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv
+from supabase import create_client
+
+def recomendar_mentor(usuario, df_usuarios):
+    # Exemplo simples: retorna o primeiro usuário que não seja o próprio
+    for _, row in df_usuarios.iterrows():
+        if row["email"] != usuario["email"]:
+            return row
+    return df_usuarios.iloc[0]  # fallback
 
 load_dotenv()
-SUPABASE_URL = os.getenv("https://wegwcsfapippzwiltmtg.supabase.co")
-SUPABASE_KEY = os.getenv("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ3djc2ZhcGlwcHp3aWx0bXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MTE1MDksImV4cCI6MjA2ODA4NzUwOX0._pNWbPt_6Wpmm89mPrZ2aXPTxsPvrLk1taTpXkVdmpY")
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise ValueError("SUPABASE_URL and SUPABASE_KEY environment variables must be set.")
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 st.set_page_config(page_title="🎓 Mentoria Imperial", layout="wide")

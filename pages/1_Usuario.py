@@ -1,14 +1,16 @@
-import streamlit as st # pyright: ignore[reportMissingImports]
+import streamlit as st
 import pandas as pd # pyright: ignore[reportMissingModuleSource]
 import os
 from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 from supabase import create_client # pyright: ignore[reportMissingImports]
-from utils.mentoria import recomendar_mentor # pyright: ignore[reportMissingImports]
+from utils.mentoria import recomendar_mentor  # pyright: ignore[reportMissingImports]
 
 # 🔐 Carrega credenciais
 load_dotenv()
-SUPABASE_URL = os.getenv("https://wegwcsfapippzwiltmtg.supabase.co")
-SUPABASE_KEY = os.getenv("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ3djc2ZhcGlwcHp3aWx0bXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MTE1MDksImV4cCI6MjA2ODA4NzUwOX0._pNWbPt_6Wpmm89mPrZ2aXPTxsPvrLk1taTpXkVdmpY")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "https://wegwcsfapippzwiltmtg.supabase.co")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ3djc2ZhcGlwcHp3aWx0bXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MTE1MDksImV4cCI6MjA2ODA4NzUwOX0._pNWbPt_6Wpmm89mPrZ2aXPTxsPvrLk1taTpXkVdmpY")
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise ValueError("SUPABASE_URL e SUPABASE_KEY devem estar definidos.")
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 st.set_page_config(page_title="👥 Sala do Usuário", layout="wide")
