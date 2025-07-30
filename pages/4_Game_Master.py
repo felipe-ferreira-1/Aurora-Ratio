@@ -106,7 +106,6 @@ def painel_master():
     agrupado["bandeira"] = agrupado["pais"].apply(get_country_emoji)
     agrupado.columns = ["País", "Usuários", "Receita", "Bandeira"]
 
-    paises_selecionados = st.multiselect("🌍 Filtrar por país", options=agrupado["País"].tolist())
     continentes = {
         "América": ["Brasil", "Argentina", "USA", "México", "Colômbia"],
         "Europa": ["Portugal", "França", "Alemanha", "Itália", "Espanha"],
@@ -115,4 +114,13 @@ def painel_master():
     }
     continente_selecionado = st.selectbox("🧭 Filtrar por continente", options=["Todos"] + list(continentes.keys()))
     if continente_selecionado != "Todos":
-        paises_selecionados += []
+        paises_disponiveis = [p for p in agrupado["País"].tolist() if p in continentes[continente_selecionado]]
+    else:
+        paises_disponiveis = agrupado["País"].tolist()
+    paises_selecionados = st.multiselect("🌍 Filtrar por país", options=paises_disponiveis)
+
+    # Exemplo de exibição dos dados filtrados
+    if paises_selecionados:
+        st.dataframe(agrupado[agrupado["País"].isin(paises_selecionados)])
+    else:
+        st.dataframe(agrupado)
