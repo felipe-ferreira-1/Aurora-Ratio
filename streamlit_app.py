@@ -1,5 +1,5 @@
 import streamlit as st
-from aurora_ratio import analisar_texto
+from aurora_ratio import analisar_texto # type: ignore
 
 st.set_page_config(page_title="Aurora Ratio", page_icon="🌌", layout="centered")
 
